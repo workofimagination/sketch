@@ -1,7 +1,7 @@
 package sketch;
 
 public class MainFrame {
-    public void init() {
+    public void build() {
         return;
     }
 }
