@@ -3,7 +3,7 @@ package sketch.components;
 import java.awt.Graphics2D;
 import java.awt.geom.Line2D;
 
-public class Line implements Drawable {
+public class Line extends Drawable {
     Coordinate start;
     Coordinate end;
 

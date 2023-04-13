@@ -1,18 +1,22 @@
 package sketch;
 
-import sketch.components.Coordinate;
-import sketch.components.Drawable;
-import sketch.components.Line;
-
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
+import javax.swing.JPanel;
+
+import sketch.components.Coordinate;
+import sketch.components.Drawable;
+import sketch.components.Line;
+
 public class Canvas extends JPanel implements MouseListener {
     private ArrayList<Drawable> drawables;
     private Coordinate firstPoint = null;
+    private Coordinate prevPoint = null;
 
     public Canvas() {
         setBackground(Color.gray);
@@ -23,7 +27,6 @@ public class Canvas extends JPanel implements MouseListener {
 
     @Override
     protected void paintComponent(Graphics g) {
-        System.out.println("Ran");
         Graphics2D g2d = (Graphics2D) g;
         for (Drawable d : drawables) {
             d.draw(g2d);
@@ -32,16 +35,18 @@ public class Canvas extends JPanel implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        System.out.println("ran");
         Coordinate clickPos = new Coordinate(e.getLocationOnScreen().getX(), e.getLocationOnScreen().y);
         if (firstPoint == null) {
             this.firstPoint = clickPos;
             return;
         }
-        System.out.println(firstPoint);
-        System.out.println(clickPos);
-        drawables.add(new Line(firstPoint, clickPos));
-        firstPoint = null;
+
+        if (prevPoint == null) {
+            this.prevPoint = this.firstPoint;
+        }
+
+        this.drawables.add(new Line(this.prevPoint, clickPos));
+        this.prevPoint = clickPos;
         repaint();
     }
 
