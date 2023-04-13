@@ -1,3 +1,4 @@
+package sketch.components;
 
 import java.awt.Graphics2D;
 

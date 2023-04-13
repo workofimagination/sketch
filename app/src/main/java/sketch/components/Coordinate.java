@@ -1,4 +1,4 @@
-package sketch.component;
+package sketch.components;
 
 public class Coordinate {
     public float x;
