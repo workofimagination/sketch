@@ -1,7 +1,16 @@
 # Ignore Gradle project-specific cache directory
 .gradle
 .vim
-.settings
+
+*.class
+*.log
+*.ctxt
+*.jar
+*.war
+*.nar
+*.zip
+*.tar.gz
+*.rar
 
 # Ignore Gradle build output directory
 build
