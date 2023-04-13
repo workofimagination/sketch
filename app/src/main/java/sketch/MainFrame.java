@@ -1,7 +1,10 @@
 package sketch;
 
-public class MainFrame {
+import javax.swing.JFrame;
+
+public class MainFrame extends JFrame {
     public void build() {
         return;
     }
 }
+
