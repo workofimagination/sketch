@@ -5,7 +5,6 @@ import java.net.URISyntaxException;
 import java.util.HashMap;
 
 import org.java_websocket.client.WebSocketClient;
-import org.java_websocket.drafts.Draft;
 import org.java_websocket.handshake.ServerHandshake;
 
 public class WSClient extends WebSocketClient {
@@ -33,6 +32,7 @@ public class WSClient extends WebSocketClient {
         System.out.println("remote: " + remote);
     }
 
+    @Override
     public void onError(Exception ex) {
         ex.printStackTrace();
     }
