@@ -3,9 +3,9 @@ package sketch.components;
 import java.awt.Graphics2D;
 import java.awt.geom.Line2D;
 
-public class Line extends Drawable {
-    Coordinate start;
-    Coordinate end;
+public class Line implements Drawable {
+    private Coordinate start;
+    private Coordinate end;
 
     public Line(Coordinate start, Coordinate end) {
         this.start = start;
@@ -15,6 +15,16 @@ public class Line extends Drawable {
     public Line(double startX, double startY, double endX, double endY) {
         this.start = new Coordinate(startX, startY);
         this.end = new Coordinate(endX, endY);
+    }
+
+    @Override
+    public Coordinate getStart() {
+        return this.start;     
+    }
+
+    @Override
+    public Coordinate getEnd() {
+        return this.end;
     }
     
     @Override

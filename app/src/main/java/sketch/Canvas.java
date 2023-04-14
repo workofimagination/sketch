@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import sketch.components.Coordinate;
 import sketch.components.Drawable;
 import sketch.components.Line;
+import sketch.utils.FileGenerator;
 
 public class Canvas extends JPanel implements MouseListener {
     private ArrayList<Drawable> drawables;
@@ -34,6 +35,11 @@ public class Canvas extends JPanel implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
+        if (this.drawables.size() > 3) {
+            System.out.println(this.drawables.get(0).getEnd());
+            FileGenerator.generate(this.drawables);
+        }
+
         Coordinate clickPos = new Coordinate(e.getLocationOnScreen().getX(), e.getLocationOnScreen().y);
         System.out.println(clickPos);
         if (firstPoint == null) {
