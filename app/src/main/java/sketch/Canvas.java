@@ -24,7 +24,6 @@ public class Canvas extends JPanel implements MouseListener {
         this.addMouseListener(this);
     }
 
-
     @Override
     protected void paintComponent(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
@@ -36,6 +35,7 @@ public class Canvas extends JPanel implements MouseListener {
     @Override
     public void mouseClicked(MouseEvent e) {
         Coordinate clickPos = new Coordinate(e.getLocationOnScreen().getX(), e.getLocationOnScreen().y);
+        System.out.println(clickPos);
         if (firstPoint == null) {
             this.firstPoint = clickPos;
             return;
@@ -47,12 +47,12 @@ public class Canvas extends JPanel implements MouseListener {
 
         this.drawables.add(new Line(this.prevPoint, clickPos));
         this.prevPoint = clickPos;
-        repaint();
+        this.repaint();
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
-
+        
     }
 
     @Override
@@ -69,6 +69,5 @@ public class Canvas extends JPanel implements MouseListener {
     public void mouseExited(MouseEvent e) {
 
     }
-
 
 }
