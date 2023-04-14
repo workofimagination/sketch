@@ -4,6 +4,7 @@
 .idea
 .settings
 
+*.gs
 *.class
 *.log
 *.ctxt
