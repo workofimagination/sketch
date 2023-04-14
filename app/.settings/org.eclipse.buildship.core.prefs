@@ -1,8 +1,8 @@
-arguments=--init-script /home/anthonyb/.local/share/vim-lsp-settings/servers/eclipse-jdt-ls/config_linux/org.eclipse.osgi/51/0/.cp/gradle/init/init.gradle
+arguments=--init-script /home/deand/.local/share/vim-lsp-settings/servers/eclipse-jdt-ls/config_linux/org.eclipse.osgi/51/0/.cp/gradle/init/init.gradle
 auto.sync=false
 build.scans.enabled=false
 connection.gradle.distribution=GRADLE_DISTRIBUTION(VERSION(7.4.2))
-connection.project.dir=..
+connection.project.dir=
 eclipse.preferences.version=1
 gradle.user.home=
 java.home=/usr/lib/jvm/java-17-openjdk

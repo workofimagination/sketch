@@ -1,13 +1,19 @@
 package sketch;
 
+import sketch.Networking.WSClient;
+
 import java.awt.Container;
 import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.net.URISyntaxException;
 
 import javax.swing.JFrame;
 
 public class App {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws URISyntaxException {
+        WSClient c = WSClient.init();
+        c.connect();
+
         System.out.println("test");
         TestFrame temp = new TestFrame();
         temp.setVisible(true);
