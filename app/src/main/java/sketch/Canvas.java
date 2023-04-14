@@ -16,17 +16,20 @@ import sketch.utils.FileGenerator;
 
 public class Canvas extends JPanel implements MouseListener {
     private ArrayList<Drawable> drawables;
+    private ArrayList<Drawable> undone;
     private Coordinate firstPoint = null;
     private Coordinate prevPoint = null;
 
     public Canvas() {
         setBackground(Color.gray);
-        this.drawables = new ArrayList<>();
+        this.drawables = new ArrayList<Drawable>();
+        this.undone = new ArrayList<Drawable>();
         this.addMouseListener(this);
     }
 
     @Override
     protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
         for (Drawable d : drawables) {
             d.draw(g2d);
@@ -69,6 +72,22 @@ public class Canvas extends JPanel implements MouseListener {
     @Override
     public void mouseExited(MouseEvent e) {
 
+    }
+
+    public void undo() {
+        int lastDrawable = this.drawables.size()-1;
+        this.undone.add(this.drawables.get(lastDrawable));
+        this.drawables.remove(this.drawables.get(lastDrawable));
+        this.prevPoint = this.drawables.get(this.drawables.size()-1).getEnd();
+        this.repaint();
+    }
+
+    public void redo() {
+        int lastUndone = this.undone.size()-1;
+        this.drawables.add(this.undone.get(lastUndone));
+        this.undone.remove(lastUndone);
+        this.prevPoint = this.drawables.get(this.drawables.size()-1).getEnd();
+        this.repaint();
     }
 
 }

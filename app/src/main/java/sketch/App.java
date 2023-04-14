@@ -5,9 +5,15 @@ import sketch.Networking.WSClient;
 import java.awt.Container;
 import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.event.*;
+
 import java.net.URISyntaxException;
 
+import javax.lang.model.util.AbstractAnnotationValueVisitor6;
+import javax.swing.Action;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.*;
 
 public class App {
     public static void main(String[] args) throws URISyntaxException {
@@ -26,12 +32,31 @@ class TestFrame extends JFrame {
     public TestFrame() {
         super( "test" );
         Container contents = getContentPane();
+        this.canvas = new Canvas();
+        this.add(canvas);
+
+        JButton undoButton = new JButton("undo");
+        undoButton.setSize(30, 50);
+        undoButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                canvas.undo();
+            }
+        });
+        this.add(undoButton);
+
+        JButton redoButton = new JButton("redo");
+        redoButton.setSize(50, 30);
+        redoButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                canvas.redo();
+            }
+        });
+        this.add(redoButton);
+
         setSize(800, 600);
         setResizable(false);
-        setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new GridLayout(1, 1));
-        this.canvas = new Canvas();
-        contents.add(canvas);
     }
 
     @Override
