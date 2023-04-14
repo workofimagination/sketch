@@ -24,10 +24,10 @@ public class FileGenerator {
             file.close();
             System.out.println("wrote to file");
 
-        } catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
+            System.out.println("unable to export file");
         } 
-        
     }
 
     private static String genCoord(Drawable item) {

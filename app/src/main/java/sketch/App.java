@@ -53,6 +53,15 @@ class TestFrame extends JFrame {
         });
         this.add(redoButton);
 
+        JButton exportButton = new JButton("export");
+        exportButton.setSize(50, 40);
+        exportButton.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e) {
+                canvas.export();
+            }
+        });
+        this.add(exportButton);
+
         setSize(800, 600);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

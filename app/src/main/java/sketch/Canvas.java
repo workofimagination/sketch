@@ -90,4 +90,8 @@ public class Canvas extends JPanel implements MouseListener {
         this.repaint();
     }
 
+    public void export() {
+        FileGenerator.generate(this.drawables); 
+    }
+
 }
