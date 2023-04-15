@@ -91,13 +91,13 @@ public class Canvas extends JPanel implements MouseListener {
         this.repaint();
     }
 
-    public void exportGS() {
-        FileGenerator.generate(this.drawables); 
+    public void exportGS(String exportLocation) {
+        FileGenerator.generate(this.drawables, exportLocation); 
     }
 
-    public void importGS() {
+    public void importGS(String filePath) {
         try {
-            this.drawables = GSParser.parse();
+            this.drawables = GSParser.parse(filePath);
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("unable to open input file");

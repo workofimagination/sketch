@@ -9,9 +9,13 @@ import sketch.components.Drawable;
 public class FileGenerator {
     private static String version = "0.1";
 
-    public static void generate(ArrayList<Drawable> drawables) {
+    public static void generate(ArrayList<Drawable> drawables, String exportLocation) {
         try {
-            FileWriter file = new FileWriter("../first.gs");
+            if (!exportLocation.substring(exportLocation.length()-3).equals(".gs")) {
+                exportLocation += ".gs";
+            }
+
+            FileWriter file = new FileWriter(exportLocation);
             file.write("version-" + version + "\n");
             file.write(drawables.get(0).getStart().x + " " + drawables.get(0).getStart().y + ";");
 

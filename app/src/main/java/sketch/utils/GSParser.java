@@ -10,13 +10,13 @@ import sketch.components.Drawable;
 import sketch.components.Line;
 
 public class GSParser {
-    public static ArrayList<Drawable> parse() throws FileNotFoundException {
+    public static ArrayList<Drawable> parse(String filePath) throws FileNotFoundException {
         // .gs parser v1 Carter R.
 
         ArrayList<Drawable> drawables = new ArrayList<Drawable>();
         Coordinate prevPoint = null;
         
-        File file = new File("../input.gs");
+        File file = new File(filePath);
         Scanner reader = new Scanner(file);
 
         ArrayList<String> parts = new ArrayList<String>();

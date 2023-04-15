@@ -3,8 +3,10 @@ package sketch.uicomponents;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JPanel;
 
 import sketch.MainFrame;
@@ -33,7 +35,15 @@ public class TopBar extends JPanel {
         exportButton.setSize(50, 40);
         exportButton.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {
-                main.canvas.exportGS();
+                JFileChooser fileChooser = new JFileChooser();
+                fileChooser.setDialogTitle("select where to export");
+                int selection = fileChooser.showSaveDialog(exportButton);
+
+                if (selection == JFileChooser.APPROVE_OPTION) {
+                    File save = fileChooser.getSelectedFile();
+                    main.canvas.exportGS(save.getAbsolutePath());
+                    System.out.println("saved to " + save.getAbsolutePath());
+                }
             }
         });
         this.add(exportButton);
@@ -42,7 +52,20 @@ public class TopBar extends JPanel {
         importButton.setSize(50, 40);
         importButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                main.canvas.importGS();
+                JFileChooser fileChooser = new JFileChooser();
+                fileChooser.setDialogTitle("select import file");
+                int selection = fileChooser.showSaveDialog(exportButton);
+
+                if (selection == JFileChooser.APPROVE_OPTION) {
+                    File save = fileChooser.getSelectedFile();
+                    if (!new File(save.getAbsolutePath()).exists()) {
+                        System.out.println("file does not exist");
+                        return;
+                    }
+
+                    main.canvas.importGS(save.getAbsolutePath());
+                    System.out.println("trying to prase file " + save.getName());
+                }
             }
         });
         this.add(importButton);
