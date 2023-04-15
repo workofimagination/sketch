@@ -13,7 +13,7 @@ public class FileGenerator {
         try {
             FileWriter file = new FileWriter("../first.gs");
             file.write("version-" + version + "\n");
-            file.write(drawables.get(0).getStart().x + " " + drawables.get(0).getStart().y + "|");
+            file.write(drawables.get(0).getStart().x + " " + drawables.get(0).getStart().y + ";");
 
             for (Drawable d : drawables) {
                 file.write(genCoord(d));

@@ -13,6 +13,7 @@ import sketch.components.Coordinate;
 import sketch.components.Drawable;
 import sketch.components.Line;
 import sketch.utils.FileGenerator;
+import sketch.utils.GSParser;
 
 public class Canvas extends JPanel implements MouseListener {
     private ArrayList<Drawable> drawables;
@@ -90,8 +91,20 @@ public class Canvas extends JPanel implements MouseListener {
         this.repaint();
     }
 
-    public void export() {
+    public void exportGS() {
         FileGenerator.generate(this.drawables); 
+    }
+
+    public void importGS() {
+        try {
+            this.drawables = GSParser.parse();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("unable to open input file");
+            return;
+        }
+
+        this.repaint();
     }
 
 }

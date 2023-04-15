@@ -33,10 +33,19 @@ public class TopBar extends JPanel {
         exportButton.setSize(50, 40);
         exportButton.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {
-                main.canvas.export();
+                main.canvas.exportGS();
             }
         });
         this.add(exportButton);
+
+        JButton importButton = new JButton("import");
+        importButton.setSize(50, 40);
+        importButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                main.canvas.importGS();
+            }
+        });
+        this.add(importButton);
 
         this.setLayout(new FlowLayout());
     }
