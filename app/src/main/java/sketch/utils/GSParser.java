@@ -14,7 +14,6 @@ public class GSParser {
         // .gs parser v1 Carter R.
 
         ArrayList<Drawable> drawables = new ArrayList<Drawable>();
-        Coordinate prevPoint = null;
         
         File file = new File(filePath);
         Scanner reader = new Scanner(file);
@@ -29,7 +28,7 @@ public class GSParser {
         reader.close();
 
         String[] points = parts.get(1).split("-|;");
-        prevPoint = toCord(points[0]);
+        Coordinate prevPoint = toCord(points[0]);
 
         for(int i = 1; i < points.length; i++) {
             Coordinate current = toCord(points[i]);

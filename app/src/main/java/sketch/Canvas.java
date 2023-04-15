@@ -39,7 +39,7 @@ public class Canvas extends JPanel implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        Coordinate clickPos = new Coordinate(e.getLocationOnScreen().getX(), e.getLocationOnScreen().y);
+        Coordinate clickPos = new Coordinate(e.getLocationOnScreen().getX(), e.getLocationOnScreen().y-40);
         System.out.println(clickPos);
         if (firstPoint == null) {
             this.firstPoint = clickPos;
@@ -103,6 +103,8 @@ public class Canvas extends JPanel implements MouseListener {
             System.out.println("unable to open input file");
             return;
         }
+
+        this.prevPoint = this.drawables.get(this.drawables.size()-1).getEnd();
 
         this.repaint();
     }

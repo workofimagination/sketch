@@ -13,16 +13,18 @@ public class MainFrame extends JFrame {
 
     public MainFrame() {
         super( "test" );
-        setSize(800, 600);
+        setSize(1000, 1000);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
         Container contents = getContentPane();
-        this.canvas = new Canvas();
-        contents.add(canvas, BorderLayout.CENTER);
 
         TopBar topBar = new TopBar(this);
         contents.add(topBar, BorderLayout.NORTH);
+
+        this.canvas = new Canvas();
+        contents.add(canvas, BorderLayout.CENTER);
+
+
 
     }
 
