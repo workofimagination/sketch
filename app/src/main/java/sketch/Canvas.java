@@ -16,7 +16,7 @@ import sketch.utils.FileGenerator;
 import sketch.utils.GSParser;
 
 public class Canvas extends JPanel implements MouseListener {
-    private ArrayList<Drawable> drawables;
+    public ArrayList<Drawable> drawables;
     private ArrayList<Drawable> undone;
     private Coordinate firstPoint = null;
     private Coordinate prevPoint = null;

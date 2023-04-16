@@ -2,7 +2,7 @@ package sketch;
 
 import java.net.URISyntaxException;
 
-import sketch.Networking.WSClient;
+import sketch.networking.WSClient;
 
 public class App {
     public static void main(String[] args) throws URISyntaxException {
@@ -10,7 +10,7 @@ public class App {
         c.connect();
 
         System.out.println("test");
-        MainFrame temp = new MainFrame();
+        MainFrame temp = new MainFrame(c);
         temp.setVisible(true);
     }
 }

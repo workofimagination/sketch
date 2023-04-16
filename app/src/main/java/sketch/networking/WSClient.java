@@ -1,11 +1,14 @@
-package sketch.Networking;
+package sketch.networking;
 
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.HashMap;
 
 import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.handshake.ServerHandshake;
+
+import sketch.utils.JsonUtils;
 
 public class WSClient extends WebSocketClient {
     public WebSocketClient client;
@@ -32,7 +35,6 @@ public class WSClient extends WebSocketClient {
         System.out.println("remote: " + remote);
     }
 
-    @Override
     public void onError(Exception ex) {
         ex.printStackTrace();
     }
@@ -46,7 +48,34 @@ public class WSClient extends WebSocketClient {
         return client;
     }
 
-    public void sendMessage(String message) {
-        this.send(message);
+    public void sendMessage(int opCode, String message) {
+        Request request = new Request(opCode, message);
+        String jsonString = new String();
+
+        try {
+            jsonString = JsonUtils.toJson(request);
+        } catch (IOException error) {
+            error.printStackTrace();
+            return;
+        }
+
+        this.send(jsonString);
     }
 }
+
+
+class Request {
+    public int op_code;
+    public String message;
+
+    public Request(int opCode, String message) {
+        this.op_code = opCode;
+        this.message = message;
+    }
+
+    @Override
+    public String toString() {
+        return "Request[message = " + message + ", op_code = " + op_code + "]";
+    }
+}
+

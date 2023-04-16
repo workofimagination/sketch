@@ -10,6 +10,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JPanel;
 
 import sketch.MainFrame;
+import sketch.utils.FileGenerator;
 
 public class TopBar extends JPanel {
     public TopBar(MainFrame main) {
@@ -69,6 +70,16 @@ public class TopBar extends JPanel {
             }
         });
         this.add(importButton);
+
+        JButton uploadButton = new JButton("upload");
+        uploadButton.setSize(50, 40);
+        uploadButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String exportString = FileGenerator.exportString(main.canvas.drawables);
+                main.client.sendMessage(1, exportString);
+            }
+        });
+        this.add(uploadButton);
 
         this.setLayout(new FlowLayout());
     }

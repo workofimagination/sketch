@@ -15,15 +15,10 @@ public class FileGenerator {
                 exportLocation += ".gs";
             }
 
+            String exportString = exportString(drawables);
             FileWriter file = new FileWriter(exportLocation);
-            file.write("version-" + version + "\n");
-            file.write(drawables.get(0).getStart().x + " " + drawables.get(0).getStart().y + ";");
 
-            for (Drawable d : drawables) {
-                file.write(genCoord(d));
-            }
-
-            file.write("\nEND");
+            file.write(exportString);
 
             file.close();
             System.out.println("wrote to file");
@@ -32,6 +27,20 @@ public class FileGenerator {
             e.printStackTrace();
             System.out.println("unable to export file");
         } 
+    }
+
+    public static String exportString(ArrayList<Drawable> drawables) {
+        StringBuilder exportString = new StringBuilder();
+        exportString.append("version-" + version + "\n");
+        exportString.append(drawables.get(0).getStart().x + " " + drawables.get(0).getStart().y + ";");
+        for (Drawable d : drawables) {
+            exportString.append(genCoord(d));
+        }
+
+        exportString.append("\nEND");
+
+        return exportString.toString();
+
     }
 
     private static String genCoord(Drawable item) {
